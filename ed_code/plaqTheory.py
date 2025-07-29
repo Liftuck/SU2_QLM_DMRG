@@ -1,3 +1,5 @@
+# bereitgestellt von Timo Jakobs
+
 import scipy.special
 import scipy.optimize
 from scipy.integrate import quad

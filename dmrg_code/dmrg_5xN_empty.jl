@@ -522,8 +522,8 @@ function get_groundstate(g2,K,H_el,H_mag,H_gauss,H_gauss_closed1,H_gauss_closed2
     end
     
     obs = DMRGObserver(energy_tol=5E-5, minsweeps=minsweeps)
-    maxdim = 2000
-    energy,psi = dmrg([g2*H_el, 1/g2*H_mag,K*H_gauss,K*(H_gauss_closed1),K*(H_gauss_closed2)], init ;nsweeps=10000,cutoff=1E-9, mindim=5, eigsolve_tol=1e-14,maxdim=Int.(reduce(vcat,[
+    maxdim = 10000
+    energy,psi = dmrg([g2*H_el, 1/g2*H_mag,K*H_gauss,K*(H_gauss_closed1),K*(H_gauss_closed2)], init ;nsweeps=10000,cutoff=1E-12, mindim=5, eigsolve_tol=1e-15,maxdim=Int.(reduce(vcat,[
     fill(min(maxdim,8*linkDim/8),3),
     fill(min(maxdim,8*linkDim/4),3),
     fill(min(maxdim,8*linkDim),3),
@@ -681,8 +681,10 @@ function ground_sweep(g2s; carryover=false, w=1)
 
 end
 
-try
-    ground_sweep(LinRange(8,0.5,31),carryover=true, w=parse(Int,ARGS[2])) # call julia dmrg_5xN.jl N_y w to start at the w-th g2 value. Usefull after crashes or timeouts
-catch e
-    ground_sweep(LinRange(8,0.5,31),carryover=true) # normal call that just runs through in order
-end
+#try
+#    ground_sweep(LinRange(8,0.5,31),carryover=true, w=parse(Int,ARGS[2])) # call julia dmrg_5xN.jl N_y w to start at the w-th g2 value. Usefull after crashes or timeouts
+#catch e
+#    ground_sweep(LinRange(8,0.5,31),carryover=true) # normal call that just runs through in order
+#end
+
+ground_sweep(LinRange(parse(Float64,ARGS[2]),parse(Float64,ARGS[2]),1),carryover=true) # call julia dmrg_5xN.jl

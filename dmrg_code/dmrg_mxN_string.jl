@@ -747,10 +747,10 @@ function ground_sweep(g2s; carryover=false, w=1)
 end
 
 
-#try
-#    ground_sweep(LinRange(8,0.5,31),carryover=true, w=parse(Int,ARGS[2])) # call julia dmrg_5xN.jl N_y w to start at the w-th g2 value. Usefull after crashes or timeouts
-#catch e
-#    ground_sweep(LinRange(8,0.5,31),carryover=true) # normal call that just runs through in order
-#end
+try
+    ground_sweep(LinRange(8,0.5,31),carryover=true, w=parse(Int,ARGS[3])) # call julia dmrg_5xN.jl N_y w to start at the w-th g2 value. Usefull after crashes or timeouts
+catch e
+    ground_sweep(LinRange(8,0.5,31),carryover=true) # normal call that just runs through in order
+end
 
-ground_sweep(LinRange(parse(Float64,ARGS[3]),parse(Float64,ARGS[3]),1),carryover=true) # call julia dmrg_5xN.jl
+#ground_sweep(LinRange(parse(Float64,ARGS[3]),parse(Float64,ARGS[3]),1),carryover=true) # call julia dmrg_5xN.jl

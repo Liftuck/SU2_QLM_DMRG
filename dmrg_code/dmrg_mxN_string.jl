@@ -547,7 +547,7 @@ function charge_half_top(m) #add to closed2 to attach 1/2 charge on m-th link at
 end
 
 function modup(x) # helping tool to compensate for the fact that julia starts arrays on 1 and thus indexing with mod() is a bit of a pain
-    return mod(x-1,5)+1
+    return mod(x-1,Nx)+1
 end
 
 function get_groundstate(g2,K,H_el,H_mag,H_gauss,H_gauss_closed1,H_gauss_closed2, charge_bot, charge_top,linkDim=max(20, ceil(Int,Nx*Ny*1.25)); rand_init=false, minsweeps=50, noise_sweeps=15, pass_init=false, init_state=0) # performs DMRG for given g². Returns energy and state

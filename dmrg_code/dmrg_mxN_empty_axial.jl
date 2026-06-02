@@ -442,7 +442,7 @@ function get_groundstate(g2,K,H_el,H_mag,H_gauss,H_gauss_closed_bot,H_gauss_clos
         init = init_state
         linkDim = max(maxlinkdim(init),linkDim) # adjust initial link dimension based on link dimension of passed state
         linkDim = min(linkDim, 256) # however at most 256
-    else # generates initial state of 50% vaccuum state and 50% string state between the two external charges
+    else # generates vaccuum state
         init = MPS(sites,["0" for n in 1:N])
     end
     
@@ -616,7 +616,7 @@ end
 try
     ground_sweep(LinRange(8,0.5,31),carryover=true, w=parse(Int,ARGS[3])) # call julia dmrg_5xN.jl N_y w to start at the w-th g2 value. Usefull after crashes or timeouts
 catch e
-    ground_sweep(LinRange(100,100,1),carryover=true) # normal call that just runs through in order
+    ground_sweep(LinRange(8,0.5,31),carryover=true) # normal call that just runs through in order
 end
 
 #ground_sweep(LinRange(parse(Float64,ARGS[3]),parse(Float64,ARGS[3]),1),carryover=true) # call julia dmrg_5xN.jl

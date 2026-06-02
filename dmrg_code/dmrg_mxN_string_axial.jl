@@ -563,7 +563,7 @@ function save_graph_links(state, name) # generates heatmap of expectation values
             else
                 yoff=0
             end
-            push!(sites,(3/2*(x-1),-(sqrt(3)*(y-1)+yoff)))
+            push!(sites,(3/2*(x-1)+1/2,-(sqrt(3)*(y-1)+yoff)))
         end
     end
     p_sites = Point2f[sites...]

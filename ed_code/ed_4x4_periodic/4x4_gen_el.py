@@ -20,7 +20,7 @@ def get_H_el(gauge_indices_base4):
     return gauge_indices_base4.astype(bool).sum(1)*3
 
 def main():
-    gauge_indices = np.loadtxt("gauge_indices_red.txt").astype(int)
+    gauge_indices = np.loadtxt("gauge_indices_red.txt").astype(dtype='uint32')
     gauge_indices_base4 = np.array([ten2four(i) for i in gauge_indices])
     h_el = get_H_el(gauge_indices_base4)
     h2 = scs.block_diag(h_el)
